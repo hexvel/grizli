@@ -116,3 +116,25 @@ class RpCommands:
 
         random_image = random.choice(ImagesForRp.feed)
         self.send_messages(self.api, self.peer_id, action, attachments=random_image)
+
+    def uebat_user(self):
+        member_id = self._member_id()
+
+        if member_id == self.from_id:
+            return
+    
+        member_id_type = "club" if member_id < 1 else "id"
+        text_split = self.message['text'].split("\n")
+
+        data_user_info = self.get_user_info(self.from_id)
+        member_sex = "уебал" if data_user_info['sex'] > 1 else "уебала"
+        user_info = self.get_user_info(member_id)
+        
+        action = f"{Icons.FEED} [id{self.from_id}|{data_user_info['first_name']} {data_user_info['last_name']}] {member_sex} "\
+        f"[{member_id_type}{member_id}|{user_info['first_name']} {user_info['last_name']}]"
+
+        if len(text_split) >= 2:
+            action += f"\n{Icons.COMMENT} С репликой: {text_split[1].strip()}"
+
+        random_image = random.choice(ImagesForRp.feed)
+        self.send_messages(self.api, self.peer_id, action, attachments=random_image)

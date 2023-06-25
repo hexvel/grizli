@@ -1,4 +1,4 @@
-from os import close
+from threading import Thread
 
 from longpoll.BotLongpoll import LongPoll
 
@@ -19,4 +19,5 @@ class Main(LongPoll, VkMethods, Functions, DefaultCommands, Base, Marriage,
 
 
 if __name__ == '__main__':
-    Main()
+    main = Main().longpoll_group
+    Thread(target=main).start()

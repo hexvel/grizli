@@ -1,5 +1,5 @@
 import vk_api
-import config as config
+from constants import DATA
 
 from loguru import logger as log
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
@@ -16,10 +16,9 @@ class LongPoll:
         self.chat_id = None
         self.message = None
         self.message_id = None
-        self.vk = vk_api.VkApi(token=config.TOKEN)
+        self.vk = vk_api.VkApi(token=DATA.TOKEN)
         self.lp = self.lp = VkBotLongPoll(self.vk, 221267894)
         self.api = self.vk.get_api()
-        LongPoll.longpoll_group(self)
 
     def search_command(self):
         text = self.text.split("\n")[0].split(" ")[0]
@@ -29,6 +28,7 @@ class LongPoll:
         if text.lower() in ['поцеловать', '!поцеловать']: return self.kiss_user()
         if text.lower() in ['ударить', '!ударить']: return self.hit_user()
         if text.lower() in ['накормить', '!накормить']: return self.feed_user()
+        if text.lower() in ['уебать', '!уебать']: return self.uebat_user()
         if text.lower() in ['брак', '!брак']: return self.marry_user()
 
     def longpoll_group(self):
