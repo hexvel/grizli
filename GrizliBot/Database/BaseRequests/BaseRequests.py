@@ -7,7 +7,6 @@ base = '127.0.0.1:8088'
 
 
 class Base:
-
     def requester(self, url: Optional[str], params: Optional[dict]) -> Optional[dict]:
         try:
             return requests.get(url=url, params=params).json()
