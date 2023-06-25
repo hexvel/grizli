@@ -9,7 +9,7 @@ class RpCommands:
 
     def hug_user(self):
         member_id = self._member_id()
-        
+
         if member_id != self.from_id:
             member_id_type = "club" if member_id < 1 else "id"
             text_split = self.message['text'].split("\n")
@@ -18,7 +18,7 @@ class RpCommands:
             member_sex = "обнял" if data_user_info['sex'] > 1 else "обняла"
             user_info = self.get_user_info(member_id)
 
-            action = f"{Icons.HUG} [id{self.from_id}|{data_user_info['first_name']}] {member_sex} "\
+            action = f"{Icons.HUG} [id{self.from_id}|{data_user_info['first_name']} {data_user_info['last_name']}] {member_sex} "\
             f"[{member_id_type}{member_id}|{user_info['first_name']} {user_info['last_name']}]"
 
             if len(text_split) >= 2:
@@ -38,7 +38,7 @@ class RpCommands:
             member_sex = "связал" if data_user_info['sex'] > 1 else "связала"
             user_info = self.get_user_info(member_id)
             
-            action = f"{Icons.BIND} [id{self.from_id}|{data_user_info['first_name']}] {member_sex} "\
+            action = f"{Icons.BIND} [id{self.from_id}|{data_user_info['first_name']} {data_user_info['last_name']}] {member_sex} "\
             f"[{member_id_type}{member_id}|{user_info['first_name']} {user_info['last_name']}]"
 
             if len(text_split) >= 2:
@@ -58,7 +58,7 @@ class RpCommands:
             member_sex = "поцеловал" if data_user_info['sex'] > 1 else "поцеловала"
             user_info = self.get_user_info(member_id)
             
-            action = f"{Icons.KISS} [id{self.from_id}|{data_user_info['first_name']}] {member_sex} "\
+            action = f"{Icons.KISS} [id{self.from_id}|{data_user_info['first_name']} {data_user_info['last_name']}] {member_sex} "\
             f"[{member_id_type}{member_id}|{user_info['first_name']} {user_info['last_name']}]"
 
             if len(text_split) >= 2:
@@ -78,7 +78,7 @@ class RpCommands:
             member_sex = "ударил" if data_user_info['sex'] > 1 else "ударила"
             user_info = self.get_user_info(member_id)
             
-            action = f"{Icons.HIT} [id{self.from_id}|{data_user_info['first_name']}] {member_sex} "\
+            action = f"{Icons.HIT} [id{self.from_id}|{data_user_info['first_name']} {data_user_info['last_name']}] {member_sex} "\
             f"[{member_id_type}{member_id}|{user_info['first_name']} {user_info['last_name']}]"
 
             if len(text_split) >= 2:
@@ -98,7 +98,7 @@ class RpCommands:
             member_sex = "накормил" if data_user_info['sex'] > 1 else "накормила"
             user_info = self.get_user_info(member_id)
             
-            action = f"{Icons.FEED} [id{self.from_id}|{data_user_info['first_name']}] {member_sex} "\
+            action = f"{Icons.FEED} [id{self.from_id}|{data_user_info['first_name']} {data_user_info['last_name']}] {member_sex} "\
             f"[{member_id_type}{member_id}|{user_info['first_name']} {user_info['last_name']}]"
 
             if len(text_split) >= 2:
