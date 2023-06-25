@@ -94,5 +94,5 @@ class RpCommands:
         if len(text_split) >= 2:
             action += f"\n{Icons.COMMENT} С репликой: {text_split[1].strip()}"
 
-        random_image = random.choice(ImagesForRp.hit)
+        random_image = random.choice(ImagesForRp.feed)
         self.send_messages(self.api, self.peer_id, action, attachments=random_image)
