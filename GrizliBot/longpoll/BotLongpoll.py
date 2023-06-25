@@ -19,6 +19,7 @@ class LongPoll:
         self.vk = vk_api.VkApi(token=DATA.TOKEN)
         self.lp = self.lp = VkBotLongPoll(self.vk, 221267894)
         self.api = self.vk.get_api()
+        
 
     def search_command(self):
         text = self.text.split("\n")[0].split(" ")[0]
