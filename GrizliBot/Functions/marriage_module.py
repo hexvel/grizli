@@ -13,7 +13,7 @@ class Marriage:
             else dict(wife=self.from_id, husband=user_id, chat_id=self.chat_id)
 
         if user_id < 1:
-            message = f"{Icons.WARNING} Вы хотите создать брак с [club{user_id}|сообществом]..? seriously..?"
+            message = f"{Icons.WARNING} Вы хотите создать брак с [club{abs(user_id)}|сообществом]..? seriously..?"
             self.send_messages(self.api, self.peer_id, message, reply_to=self.message_id)
             return
         
