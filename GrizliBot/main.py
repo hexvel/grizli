@@ -1,14 +1,14 @@
 from os import close
 
-from GrizliBot.longpoll.BotLongpoll import LongPoll
+from longpoll.BotLongpoll import LongPoll
 
-from GrizliBot.Utils.VkMethods import VkMethods
-from GrizliBot.Utils.Utils import Functions
+from Utils.VkMethods import VkMethods
+from Utils.Utils import Functions
 
-from GrizliBot.Database.BaseRequests.BaseRequests import Base
+from Database.BaseRequests.BaseRequests import Base
 
-from GrizliBot.Functions.default_commands import DefaultCommands
-from GrizliBot.Functions.marriage_module import Marriage
+from Functions.default_commands import DefaultCommands
+from Functions.marriage_module import Marriage
 
 
 class Main(LongPoll, VkMethods, Functions, DefaultCommands, Base, Marriage):
