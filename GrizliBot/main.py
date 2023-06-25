@@ -9,9 +9,11 @@ from Database.BaseRequests.BaseRequests import Base
 
 from Functions.default_commands import DefaultCommands
 from Functions.marriage_module import Marriage
+from Functions.rp_commands import RpCommands
 
 
-class Main(LongPoll, VkMethods, Functions, DefaultCommands, Base, Marriage):
+class Main(LongPoll, VkMethods, Functions, DefaultCommands, Base, Marriage,
+           RpCommands):
     def __init__(self):
         super().__init__()
 
