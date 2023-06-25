@@ -1,7 +1,7 @@
 import time
 
 from loguru import logger
-from GrizliBot.decors import error_logger
+from decors import error_logger
 
 
 class VkMethods:

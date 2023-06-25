@@ -1,7 +1,7 @@
 import random
 
 from loguru import logger as log
-from GrizliBot.constants import Icons, ImagesForRp
+from constants import Icons, ImagesForRp
 
 
 class RpCommands:
