@@ -1,5 +1,5 @@
 import vk_api
-import config
+import GrizliBot.config as config
 
 from loguru import logger as log
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType

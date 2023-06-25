@@ -1,4 +1,4 @@
-from DB.BaseRequests.BaseRequests import Base
+from Database.BaseRequests.BaseRequests import Base
 
 
 db = Base()

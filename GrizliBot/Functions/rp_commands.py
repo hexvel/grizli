@@ -1,17 +1,11 @@
-import time
 import random
 
 from loguru import logger as log
-from constants import Icons, ImagesForRp
+from GrizliBot.constants import Icons, ImagesForRp
 
 
-class UserCommands:
-    log.success("Class [LongPoll] was successfully runned.")
-
-    def ping(self):
-        ping = time.time() - self.message['date']
-        times = round(ping, 4)
-        self.send_messages(self.api, self.peer_id, f"{Icons.SETTINGS} PingTime: {times}s.")
+class RpCommands:
+    log.success("Class [RpCommands] was successfully runned.")
 
     def hug_user(self):
         member_id = self._member_id()
