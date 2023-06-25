@@ -5,7 +5,7 @@ from decors import error_logger
 
 
 class VkMethods:
-    logger.success("Class [VkMethods] was successfully runned")
+    logger.success("Class is running")
     time.sleep(0.1)
 
     def send_messages(self, vk: object, peer_id: int, messages: str = None, attachments: str = None,

@@ -6,7 +6,7 @@ from constants import Icons, ImagesForRp
 
 
 class DefaultCommands:
-    log.success("Class [DefaultCommands] was successfully runned.")
+    log.success("Class is running")
 
     def ping(self):
         ping = time.time() - self.message['date']

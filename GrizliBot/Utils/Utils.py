@@ -4,7 +4,7 @@ from loguru import logger
 
 
 class Functions:
-    logger.success("Class [Functions] was successfully runned.")
+    logger.success("Class is running")
     time.sleep(0.1)
 
     def delete_elements(self, text: str, elements: list) -> str:

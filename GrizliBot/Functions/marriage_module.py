@@ -4,7 +4,7 @@ from constants import Icons, ImagesForRp
 
 
 class Marriage:
-    log.success("Class [Marriage] was successfully runned.")
+    log.success("Class is running")
 
     def marry_user(self):
         user_id = self._member_id()
