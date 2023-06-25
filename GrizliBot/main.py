@@ -1,6 +1,6 @@
 from os import close
 
-from GrizliBot.Longpoll.BotLongpoll import LongPoll
+from GrizliBot.longpoll.BotLongpoll import LongPoll
 
 from GrizliBot.Utils.VkMethods import VkMethods
 from GrizliBot.Utils.Utils import Functions
