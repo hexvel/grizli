@@ -23,12 +23,6 @@ class Functions:
             return str(text['items'][0]['reply_message']['text'])
         else:
             return str(text['items'][0]['reply_message']['text'])
-
-    def text_validator_by_command(self, data: str):
-        NICE_COMMANDS = ['шаб', 'пинг']
-        if data in NICE_COMMANDS:
-            return True
-        return False
     
     def get_user_info(self, user_id: int):
         user_info = self.api.users.get(user_ids=user_id, fields="sex")

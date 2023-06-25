@@ -1,6 +1,7 @@
 import time
 
 from loguru import logger
+from random import getrandbits
 from decors import error_logger
 
 
@@ -9,7 +10,7 @@ class VkMethods:
     time.sleep(0.1)
 
     def send_messages(self, vk: object, peer_id: int, messages: str = None, attachments: str = None,
-                      expire_ttl: int = None, reply_to: int = None, random_id: int = 0, forward: dict = None) -> bool:
+                      expire_ttl: int = None, reply_to: int = None, random_id = getrandbits(32), forward: dict = None) -> bool:
         """
         :param forward: dict
         :param vk: object
@@ -30,7 +31,7 @@ class VkMethods:
             return False
 
     def edit_messages(self, vk: object, peer_id: int, messages: str = None, message_id: int = None,
-                      attachments: str = None, reply_to: int = None, random_id: int = 0, send: bool = True,
+                      attachments: str = None, reply_to: int = None, send: bool = True,
                       keep_forward_messages: int = 1) -> bool:
         """
         :param vk: object
@@ -46,13 +47,13 @@ class VkMethods:
         """
         try:
             vk.messages.edit(peer_id=peer_id, message_id=message_id, message=messages,
-                             attachment=attachments, random_id=random_id, keep_forward_messages=keep_forward_messages)
+                             attachment=attachments, keep_forward_messages=keep_forward_messages)
         except:
             if not send:
                 return False
             self.delete_messages(self.api, self.peer_id, self.message_id)
             self.send_messages(vk, peer_id=peer_id, messages=messages, attachments=attachments,
-                               reply_to=reply_to, random_id=random_id)
+                               reply_to=reply_to)
         else:
             return True
 
@@ -65,7 +66,7 @@ class VkMethods:
         :param delete_for_all: int
         :rtype: bool
         """
-        vk.messages.delete(peer_id=peer_id, message_ids=message_ids, delete_for_all=delete_for_all)
+        vk.messages.delete(peer_id=peer_id, cmids=message_ids, delete_for_all=delete_for_all)
         return True
 
     def __del__(self):
