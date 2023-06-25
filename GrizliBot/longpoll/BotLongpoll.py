@@ -25,6 +25,8 @@ class LongPoll:
         text = self.text.split("\n")[0].split(" ")[0]
         if text.lower() in ['пинг', '!пинг']: return self.ping()
         if text.lower() in ['обнять', '!обнять']: return self.hug_user()
+        if text.lower() in ['связать', '!связать']: return self.bind_user()
+        if text.lower() in ['брак', '!брак']: return self.marry_user()
 
     def longpoll_group(self):
         log.success("Function [longpoll_group] was successfully runned.")
