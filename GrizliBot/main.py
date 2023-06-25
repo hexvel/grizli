@@ -11,11 +11,12 @@ from Functions.default_commands import DefaultCommands
 from Functions.marriage_module import Marriage
 from Functions.rp_commands import RpCommands
 
+from threading import Thread
+
 
 class Main(LongPoll, VkMethods, Functions, DefaultCommands, Base, Marriage,
            RpCommands):
-    def __init__(self):
-        super().__init__()
+    pass
 
 
 if __name__ == '__main__':

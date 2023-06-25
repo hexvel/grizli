@@ -3,6 +3,7 @@ from constants import DATA
 
 from loguru import logger as log
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+from threading import Thread
 
 
 class LongPoll:
@@ -21,19 +22,31 @@ class LongPoll:
         self.api = self.vk.get_api()
         
 
-    def search_command(self):
-        text = self.text.split("\n")[0].split(" ")[0]
-        if text.lower() in ['пинг', '!пинг']: return self.ping()
-        if text.lower() in ['обнять', '!обнять']: return self.hug_user()
-        if text.lower() in ['связать', '!связать']: return self.bind_user()
-        if text.lower() in ['поцеловать', '!поцеловать']: return self.kiss_user()
-        if text.lower() in ['ударить', '!ударить']: return self.hit_user()
-        if text.lower() in ['накормить', '!накормить']: return self.feed_user()
-        if text.lower() in ['уебать', '!уебать']: return self.uebat_user()
-        if text.lower() in ['брак', '!брак']: return self.marry_user()
+    def search_prefix(self):
+        try:
+            prefix = self.text[0]
+            return prefix
+        except:
+            return None
+
+    def search_command(self, prefix=False):
+        if prefix:
+            text = self.text.split("\n")[0].split(" ")[0]
+            command = text.replace(text[0], "").lower()
+        else:
+            command = text = self.text.split("\n")[0].lower()
+
+        if command in ['пинг']: return self.ping()
+        if command in ['обнять']: return self.hug_user()
+        if command in ['связать']: return self.bind_user()
+        if command in ['поцеловать']: return self.kiss_user()
+        if command in ['ударить']: return self.hit_user()
+        if command in ['накормить']: return self.feed_user()
+        if command in ['брак']: return self.marry_user()
 
     def longpoll_group(self):
         log.success("Function running")
+
         for event in self.lp.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
                 self.event = event.object
@@ -43,4 +56,10 @@ class LongPoll:
                 self.peer_id = event.object.message["peer_id"]
                 self.chat_id = event.chat_id
                 self.text = event.object.message["text"]
-                self.search_command()
+
+                prefix = self.search_prefix()
+                if prefix is not None and prefix in ["!", ".", "/"]:
+                    Thread(target=self.search_command,
+                           daemon=True, args=(True,)).start()
+                else:
+                    Thread(target=self.search_command, daemon=True).start()
