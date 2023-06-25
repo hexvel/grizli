@@ -3,6 +3,7 @@ import config as config
 
 from loguru import logger as log
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
+from threading import Thread
 
 
 class LongPoll:
@@ -45,6 +46,7 @@ class LongPoll:
 
     def longpoll_group(self):
         log.success("Function running")
+
         for event in self.lp.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
                 self.event = event.object
@@ -57,6 +59,7 @@ class LongPoll:
 
                 prefix = self.search_prefix()
                 if prefix is not None and prefix in ["!", ".", "/"]:
-                    self.search_command(prefix=True)
+                    Thread(target=self.search_command,
+                           daemon=True, args=(True,)).start()
                 else:
-                    self.search_command(prefix=False)
+                    Thread(target=self.search_command, daemon=True).start()
