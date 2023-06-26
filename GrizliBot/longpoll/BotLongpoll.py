@@ -1,5 +1,5 @@
 import vk_api
-from constants import DATA
+from config import TOKEN
 
 from vk_api import VkUpload
 from loguru import logger as log
@@ -17,7 +17,7 @@ class LongPoll:
         self.chat_id = ...
         self.message = ...
         self.message_id = ...
-        self.vk = vk_api.VkApi(token=DATA.TOKEN)
+        self.vk = vk_api.VkApi(token=TOKEN)
         self.lp = self.lp = VkBotLongPoll(self.vk, 221267894)
         self.api = self.vk.get_api()
         self.upl = VkUpload(self.vk)
