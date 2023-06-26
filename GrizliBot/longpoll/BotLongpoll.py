@@ -1,31 +1,31 @@
 import vk_api
-import config as config
+from constants import DATA
 
+from vk_api import VkUpload
 from loguru import logger as log
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
-from threading import Thread
 
 
 class LongPoll:
     log.success("Class is running")
 
     def __init__(self):
-        self.text = None
-        self.event = None
-        self.from_id = None
-        self.peer_id = None
-        self.chat_id = None
-        self.message = None
-        self.message_id = None
-        self.vk = vk_api.VkApi(token=config.TOKEN)
+        self.text = ...
+        self.event = ...
+        self.from_id = ...
+        self.peer_id = ...
+        self.chat_id = ...
+        self.message = ...
+        self.message_id = ...
+        self.vk = vk_api.VkApi(token=DATA.TOKEN)
         self.lp = self.lp = VkBotLongPoll(self.vk, 221267894)
         self.api = self.vk.get_api()
-        LongPoll.longpoll_group(self)
+        self.upl = VkUpload(self.vk)
+        
 
     def search_prefix(self):
         try:
-            prefix = self.text[0]
-            return prefix
+            return self.text[0]
         except:
             return None
 
@@ -43,6 +43,7 @@ class LongPoll:
         if command in ['ударить']: return self.hit_user()
         if command in ['накормить']: return self.feed_user()
         if command in ['брак']: return self.marry_user()
+        if command in ['тест']: return self.get_voice_from_audio()
 
     def longpoll_group(self):
         log.success("Function running")
@@ -59,7 +60,6 @@ class LongPoll:
 
                 prefix = self.search_prefix()
                 if prefix is not None and prefix in ["!", ".", "/"]:
-                    Thread(target=self.search_command,
-                           daemon=True, args=(True,)).start()
+                    self.search_command(prefix=True)
                 else:
-                    Thread(target=self.search_command, daemon=True).start()
+                    self.search_command(prefix=False)
